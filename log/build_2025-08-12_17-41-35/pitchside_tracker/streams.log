@@ -1,0 +1,32 @@
+[2.767s] Invoking command in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/src/pitchside_tracker': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pitchside_tracker build --build-base /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build install --record /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/install.log --single-version-externally-managed install_data
+[3.580s] running egg_info
+[3.581s] creating ../../build/pitchside_tracker/pitchside_tracker.egg-info
+[3.640s] writing ../../build/pitchside_tracker/pitchside_tracker.egg-info/PKG-INFO
+[3.640s] writing dependency_links to ../../build/pitchside_tracker/pitchside_tracker.egg-info/dependency_links.txt
+[3.641s] writing requirements to ../../build/pitchside_tracker/pitchside_tracker.egg-info/requires.txt
+[3.641s] writing top-level names to ../../build/pitchside_tracker/pitchside_tracker.egg-info/top_level.txt
+[3.641s] writing manifest file '../../build/pitchside_tracker/pitchside_tracker.egg-info/SOURCES.txt'
+[3.765s] reading manifest file '../../build/pitchside_tracker/pitchside_tracker.egg-info/SOURCES.txt'
+[3.767s] writing manifest file '../../build/pitchside_tracker/pitchside_tracker.egg-info/SOURCES.txt'
+[3.767s] running build
+[3.767s] running build_py
+[3.768s] creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build
+[3.768s] creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib
+[3.768s] creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker
+[3.769s] copying pitchside_tracker/__init__.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker
+[3.769s] running install
+[3.782s] running install_lib
+[3.839s] creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker
+[3.839s] copying /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker/__init__.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker
+[3.840s] byte-compiling /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker/__init__.py to __init__.cpython-312.pyc
+[3.841s] running install_data
+[3.841s] creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/ament_index
+[3.841s] creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/ament_index/resource_index
+[3.841s] creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/ament_index/resource_index/packages
+[3.842s] copying resource/pitchside_tracker -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/ament_index/resource_index/packages
+[3.842s] copying package.xml -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker
+[3.842s] running install_egg_info
+[3.906s] Copying ../../build/pitchside_tracker/pitchside_tracker.egg-info to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker-0.0.0-py3.12.egg-info
+[3.908s] running install_scripts
+[4.305s] writing list of installed files to '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/install.log'
+[4.385s] Invoked command in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/src/pitchside_tracker' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pitchside_tracker build --build-base /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build install --record /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/install.log --single-version-externally-managed install_data

@@ -1,0 +1,348 @@
+[0.171s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install', '--packages-select', 'pitchside_tracker']
+[0.172s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['pitchside_tracker'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x712651d993d0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x712651ed5a60>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x712651ed5a60>>, mixin_verb=('build',))
+[0.227s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.227s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.227s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.227s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.227s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.227s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.227s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker'
+[0.227s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.228s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.263s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.264s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extensions ['ignore', 'ignore_ament_install']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'ignore'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'ignore_ament_install'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extensions ['colcon_pkg']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'colcon_pkg'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extensions ['colcon_meta']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'colcon_meta'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extensions ['ros']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'ros'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extensions ['cmake', 'python']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'cmake'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'python'
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extensions ['python_setup_py']
+[0.265s] Level 1:colcon.colcon_core.package_identification:_identify(launch) by extension 'python_setup_py'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.266s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.267s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extensions ['ignore', 'ignore_ament_install']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'ignore'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'ignore_ament_install'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extensions ['colcon_pkg']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'colcon_pkg'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extensions ['colcon_meta']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'colcon_meta'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extensions ['ros']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'ros'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extensions ['cmake', 'python']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'cmake'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'python'
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extensions ['python_setup_py']
+[0.268s] Level 1:colcon.colcon_core.package_identification:_identify(src/models) by extension 'python_setup_py'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extensions ['ignore', 'ignore_ament_install']
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'ignore'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'ignore_ament_install'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extensions ['colcon_pkg']
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'colcon_pkg'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extensions ['colcon_meta']
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'colcon_meta'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extensions ['ros']
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'ros'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extensions ['cmake', 'python']
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'cmake'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'python'
+[0.269s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extensions ['python_setup_py']
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball) by extension 'python_setup_py'
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extensions ['ignore', 'ignore_ament_install']
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'ignore'
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'ignore_ament_install'
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extensions ['colcon_pkg']
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'colcon_pkg'
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extensions ['colcon_meta']
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'colcon_meta'
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extensions ['ros']
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'ros'
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extensions ['cmake', 'python']
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'cmake'
+[0.270s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'python'
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extensions ['python_setup_py']
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials) by extension 'python_setup_py'
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extensions ['ignore', 'ignore_ament_install']
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'ignore'
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'ignore_ament_install'
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extensions ['colcon_pkg']
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'colcon_pkg'
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extensions ['colcon_meta']
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'colcon_meta'
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extensions ['ros']
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'ros'
+[0.271s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extensions ['cmake', 'python']
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'cmake'
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'python'
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extensions ['python_setup_py']
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/materials/textures) by extension 'python_setup_py'
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extensions ['ignore', 'ignore_ament_install']
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'ignore'
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'ignore_ament_install'
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extensions ['colcon_pkg']
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'colcon_pkg'
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extensions ['colcon_meta']
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'colcon_meta'
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extensions ['ros']
+[0.272s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'ros'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extensions ['cmake', 'python']
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'cmake'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'python'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extensions ['python_setup_py']
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/ball/meshes) by extension 'python_setup_py'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extensions ['ignore', 'ignore_ament_install']
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'ignore'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'ignore_ament_install'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extensions ['colcon_pkg']
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'colcon_pkg'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extensions ['colcon_meta']
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'colcon_meta'
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extensions ['ros']
+[0.273s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'ros'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extensions ['cmake', 'python']
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'cmake'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'python'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extensions ['python_setup_py']
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch) by extension 'python_setup_py'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extensions ['ignore', 'ignore_ament_install']
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'ignore'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'ignore_ament_install'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extensions ['colcon_pkg']
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'colcon_pkg'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extensions ['colcon_meta']
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'colcon_meta'
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extensions ['ros']
+[0.274s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'ros'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extensions ['cmake', 'python']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'cmake'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'python'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extensions ['python_setup_py']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials) by extension 'python_setup_py'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extensions ['ignore', 'ignore_ament_install']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'ignore'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'ignore_ament_install'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extensions ['colcon_pkg']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'colcon_pkg'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extensions ['colcon_meta']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'colcon_meta'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extensions ['ros']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'ros'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extensions ['cmake', 'python']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'cmake'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'python'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extensions ['python_setup_py']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/scripts) by extension 'python_setup_py'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extensions ['ignore', 'ignore_ament_install']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'ignore'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'ignore_ament_install'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extensions ['colcon_pkg']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'colcon_pkg'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extensions ['colcon_meta']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'colcon_meta'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extensions ['ros']
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'ros'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extensions ['cmake', 'python']
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'cmake'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'python'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extensions ['python_setup_py']
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/football_pitch/materials/textures) by extension 'python_setup_py'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extensions ['ignore', 'ignore_ament_install']
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'ignore'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'ignore_ament_install'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extensions ['colcon_pkg']
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'colcon_pkg'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extensions ['colcon_meta']
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'colcon_meta'
+[0.277s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extensions ['ros']
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'ros'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extensions ['cmake', 'python']
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'cmake'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'python'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extensions ['python_setup_py']
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal) by extension 'python_setup_py'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extensions ['ignore', 'ignore_ament_install']
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'ignore'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'ignore_ament_install'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extensions ['colcon_pkg']
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'colcon_pkg'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extensions ['colcon_meta']
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'colcon_meta'
+[0.278s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extensions ['ros']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'ros'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extensions ['cmake', 'python']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'cmake'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'python'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extensions ['python_setup_py']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials) by extension 'python_setup_py'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extensions ['ignore', 'ignore_ament_install']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'ignore'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'ignore_ament_install'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extensions ['colcon_pkg']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'colcon_pkg'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extensions ['colcon_meta']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'colcon_meta'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extensions ['ros']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'ros'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extensions ['cmake', 'python']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'cmake'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'python'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extensions ['python_setup_py']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/scripts) by extension 'python_setup_py'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extensions ['ignore', 'ignore_ament_install']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'ignore'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'ignore_ament_install'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extensions ['colcon_pkg']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'colcon_pkg'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extensions ['colcon_meta']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'colcon_meta'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extensions ['ros']
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'ros'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extensions ['cmake', 'python']
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'cmake'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'python'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extensions ['python_setup_py']
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/models/goal/materials/textures) by extension 'python_setup_py'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extensions ['ignore', 'ignore_ament_install']
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extension 'ignore'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extension 'ignore_ament_install'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extensions ['colcon_pkg']
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extension 'colcon_pkg'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extensions ['colcon_meta']
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extension 'colcon_meta'
+[0.281s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extensions ['ros']
+[0.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/pitchside_tracker) by extension 'ros'
+[0.285s] DEBUG:colcon.colcon_core.package_identification:Package 'src/pitchside_tracker' with type 'ros.ament_python' and name 'pitchside_tracker'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extensions ['ignore', 'ignore_ament_install']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'ignore'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'ignore_ament_install'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extensions ['colcon_pkg']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'colcon_pkg'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extensions ['colcon_meta']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'colcon_meta'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extensions ['ros']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'ros'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extensions ['cmake', 'python']
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'cmake'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'python'
+[0.285s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extensions ['python_setup_py']
+[0.286s] Level 1:colcon.colcon_core.package_identification:_identify(worlds) by extension 'python_setup_py'
+[0.286s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.286s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.286s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.286s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.286s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.309s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.309s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.311s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install
+[0.313s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 320 installed packages in /opt/ros/rolling
+[0.315s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.385s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'cmake_args' from command line to 'None'
+[0.385s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'cmake_target' from command line to 'None'
+[0.386s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.386s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'cmake_clean_cache' from command line to 'False'
+[0.386s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'cmake_clean_first' from command line to 'False'
+[0.386s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'cmake_force_configure' from command line to 'False'
+[0.386s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'ament_cmake_args' from command line to 'None'
+[0.386s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'catkin_cmake_args' from command line to 'None'
+[0.386s] Level 5:colcon.colcon_core.verb:set package 'pitchside_tracker' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.386s] DEBUG:colcon.colcon_core.verb:Building package 'pitchside_tracker' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker', 'merge_install': False, 'path': '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/src/pitchside_tracker', 'symlink_install': True, 'test_result_base': None}
+[0.386s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.387s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.387s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/src/pitchside_tracker' with build type 'ament_python'
+[0.388s] Level 1:colcon.colcon_core.shell:create_environment_hook('pitchside_tracker', 'ament_prefix_path')
+[0.390s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.390s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/hook/ament_prefix_path.ps1'
+[0.391s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/hook/ament_prefix_path.dsv'
+[0.391s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/hook/ament_prefix_path.sh'
+[0.392s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.392s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.761s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/src/pitchside_tracker'
+[0.761s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.761s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.752s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/ament_index/resource_index/packages/pitchside_tracker
+[1.752s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/package.xml
+[1.752s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/launch
+[1.752s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/models
+[1.752s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/worlds
+[1.753s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pitchside_tracker/spawn_sideline
+[1.753s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pitchside_tracker/tracking_node
+[1.757s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build --no-deps symlink_data --force
+[2.851s] Level 1:colcon.colcon_core.shell:create_environment_hook('pitchside_tracker', 'pythonpath_develop')
+[2.852s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/share/pitchside_tracker/hook/pythonpath_develop.ps1'
+[2.852s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build --no-deps symlink_data --force
+[2.853s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/share/pitchside_tracker/hook/pythonpath_develop.dsv'
+[2.854s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/share/pitchside_tracker/hook/pythonpath_develop.sh'
+[2.857s] Level 1:colcon.colcon_core.environment:checking '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker' for CMake module files
+[2.858s] Level 1:colcon.colcon_core.environment:checking '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker' for CMake config files
+[2.860s] Level 1:colcon.colcon_core.environment:checking '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib'
+[2.860s] Level 1:colcon.colcon_core.environment:checking '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/bin'
+[2.860s] Level 1:colcon.colcon_core.environment:checking '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pkgconfig/pitchside_tracker.pc'
+[2.861s] Level 1:colcon.colcon_core.environment:checking '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages'
+[2.861s] Level 1:colcon.colcon_core.shell:create_environment_hook('pitchside_tracker', 'pythonpath')
+[2.862s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/hook/pythonpath.ps1'
+[2.863s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/hook/pythonpath.dsv'
+[2.863s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/hook/pythonpath.sh'
+[2.865s] Level 1:colcon.colcon_core.environment:checking '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/bin'
+[2.865s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(pitchside_tracker)
+[2.865s] INFO:colcon.colcon_core.shell:Creating package script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/package.ps1'
+[2.867s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/package.dsv'
+[2.868s] INFO:colcon.colcon_core.shell:Creating package script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/package.sh'
+[2.870s] INFO:colcon.colcon_core.shell:Creating package script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/package.bash'
+[2.872s] INFO:colcon.colcon_core.shell:Creating package script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/package.zsh'
+[2.873s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/colcon-core/packages/pitchside_tracker)
+[2.873s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.874s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.874s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.874s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.883s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.883s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.883s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.906s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.906s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/local_setup.ps1'
+[2.908s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/_local_setup_util_ps1.py'
+[2.909s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/setup.ps1'
+[2.913s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/local_setup.sh'
+[2.914s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/_local_setup_util_sh.py'
+[2.915s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/setup.sh'
+[2.917s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/local_setup.bash'
+[2.917s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/setup.bash'
+[2.919s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/local_setup.zsh'
+[2.919s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/setup.zsh'

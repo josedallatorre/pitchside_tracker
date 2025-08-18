@@ -1,0 +1,18 @@
+running develop
+running egg_info
+writing pitchside_tracker.egg-info/PKG-INFO
+writing dependency_links to pitchside_tracker.egg-info/dependency_links.txt
+writing entry points to pitchside_tracker.egg-info/entry_points.txt
+writing requirements to pitchside_tracker.egg-info/requires.txt
+writing top-level names to pitchside_tracker.egg-info/top_level.txt
+reading manifest file 'pitchside_tracker.egg-info/SOURCES.txt'
+writing manifest file 'pitchside_tracker.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside-tracker.egg-link (link to .)
+Installing spawn_sideline script to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pitchside_tracker
+Installing tracking_node script to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pitchside_tracker
+
+Installed /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker
+running symlink_data
+symbolically linking /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/resource/pitchside_tracker -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/ament_index/resource_index/packages
+symbolically linking /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/package.xml -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker

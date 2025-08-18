@@ -1,0 +1,30 @@
+running develop
+Removing /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside-tracker.egg-link (link to .)
+running egg_info
+writing ../../build/pitchside_tracker/pitchside_tracker.egg-info/PKG-INFO
+writing dependency_links to ../../build/pitchside_tracker/pitchside_tracker.egg-info/dependency_links.txt
+writing entry points to ../../build/pitchside_tracker/pitchside_tracker.egg-info/entry_points.txt
+writing requirements to ../../build/pitchside_tracker/pitchside_tracker.egg-info/requires.txt
+writing top-level names to ../../build/pitchside_tracker/pitchside_tracker.egg-info/top_level.txt
+reading manifest file '../../build/pitchside_tracker/pitchside_tracker.egg-info/SOURCES.txt'
+writing manifest file '../../build/pitchside_tracker/pitchside_tracker.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+copying /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker/__init__.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker
+copying /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker/spawn_sideline.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker
+copying /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker/tracking_node.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker
+byte-compiling /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker/spawn_sideline.py to spawn_sideline.cpython-312.pyc
+byte-compiling /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker/tracking_node.py to tracking_node.cpython-312.pyc
+running install_data
+copying resource/pitchside_tracker -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/ament_index/resource_index/packages
+copying package.xml -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker
+copying launch/sideline_world.launch.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/share/pitchside_tracker/launch
+running install_egg_info
+Copying ../../build/pitchside_tracker/pitchside_tracker.egg-info to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker-0.0.0-py3.12.egg-info
+running install_scripts
+Installing spawn_sideline script to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pitchside_tracker
+Installing tracking_node script to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pitchside_tracker
+writing list of installed files to '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/install.log'

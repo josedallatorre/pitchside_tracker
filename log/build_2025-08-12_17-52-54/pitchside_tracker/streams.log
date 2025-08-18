@@ -1,0 +1,24 @@
+[3.606s] Invoking command in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/src/pitchside_tracker': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pitchside_tracker build --build-base /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build install --record /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/install.log --single-version-externally-managed install_data
+[4.603s] running egg_info
+[4.693s] writing ../../build/pitchside_tracker/pitchside_tracker.egg-info/PKG-INFO
+[4.694s] writing dependency_links to ../../build/pitchside_tracker/pitchside_tracker.egg-info/dependency_links.txt
+[4.694s] writing entry points to ../../build/pitchside_tracker/pitchside_tracker.egg-info/entry_points.txt
+[4.694s] writing requirements to ../../build/pitchside_tracker/pitchside_tracker.egg-info/requires.txt
+[4.695s] writing top-level names to ../../build/pitchside_tracker/pitchside_tracker.egg-info/top_level.txt
+[4.859s] reading manifest file '../../build/pitchside_tracker/pitchside_tracker.egg-info/SOURCES.txt'
+[4.866s] writing manifest file '../../build/pitchside_tracker/pitchside_tracker.egg-info/SOURCES.txt'
+[4.867s] running build
+[4.867s] running build_py
+[4.868s] copying pitchside_tracker/tracker_node.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker
+[4.868s] running install
+[4.889s] running install_lib
+[4.973s] copying /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build/lib/pitchside_tracker/tracker_node.py -> /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker
+[4.975s] byte-compiling /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker/tracker_node.py to tracker_node.cpython-312.pyc
+[4.976s] running install_data
+[4.977s] running install_egg_info
+[5.060s] removing '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker-0.0.0-py3.12.egg-info' (and everything under it)
+[5.061s] Copying ../../build/pitchside_tracker/pitchside_tracker.egg-info to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages/pitchside_tracker-0.0.0-py3.12.egg-info
+[5.062s] running install_scripts
+[5.578s] Installing my_node script to /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/pitchside_tracker
+[5.579s] writing list of installed files to '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/install.log'
+[5.697s] Invoked command in '/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/src/pitchside_tracker' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/install/pitchside_tracker/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/pitchside_tracker build --build-base /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/build install --record /home/jota/Desktop/uni/magistrale/droni/pitchside_tracker/build/pitchside_tracker/install.log --single-version-externally-managed install_data
