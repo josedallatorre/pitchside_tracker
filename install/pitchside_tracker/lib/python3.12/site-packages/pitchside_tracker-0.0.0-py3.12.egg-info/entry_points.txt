@@ -1,3 +1,0 @@
-[console_scripts]
-spawn_sideline = pitchside_tracker.spawn_sideline:main
-tracking_node = pitchside_tracker.tracking_node:main
