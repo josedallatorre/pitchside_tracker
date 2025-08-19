@@ -1,0 +1,25 @@
+<sdf version="1.6">
+  <world name="default">
+  <include>
+  <uri>model://MSL_models15/RoboCup15_MSL_Field</uri>
+  <pose>0 0 0 0 0 0</pose> <!-- x y z roll pitch yaw -->
+  </include>
+  <include>
+    <uri>model://MSL_models15/RoboCup15_MSL_Football</uri>
+    <pose>0 0 0.11 0 0 0</pose> <!-- 0.11m so it sits on the ground -->
+  </include>
+      <!-- Goal 1 -->
+    <include>
+      <name>goal1</name>
+      <uri>model://MSL_models15/RoboCup15_MSL_Goal</uri>
+      <pose>9 0 0.0 0 0 0</pose>
+    </include>
+
+    <!-- Goal 2 -->
+    <include>
+      <name>goal2</name>
+      <uri>model://MSL_models15/RoboCup15_MSL_Goal</uri>
+      <pose>-9 0 0.0 0 0 3.14</pose>
+    </include>
+  </world>
+</sdf>
