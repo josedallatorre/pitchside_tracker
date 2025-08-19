@@ -1,0 +1,4 @@
+src/pitchside_tracker/pitchside_tracker/__pycache__/*
+install/*
+build/*
+log/*
