@@ -23,6 +23,7 @@ RUN mkdir -p /ros2_ws/src
 COPY ./sjtu_drone_description /ros2_ws/src/sjtu_drone_description
 COPY ./sjtu_drone_bringup /ros2_ws/src/sjtu_drone_bringup
 COPY ./sjtu_drone_control /ros2_ws/src/sjtu_drone_control
+COPY ./pitchside_tracker /ros2_ws/src/pitchside_tracker
 
 RUN curl -L https://github.com/osrf/gazebo_models/archive/refs/heads/master.zip -o /tmp/gazebo_models.zip \
     && unzip /tmp/gazebo_models.zip -d /tmp && mkdir -p ~/.gazebo/models/ && mv /tmp/gazebo_models-master/* ~/.gazebo/models/ \
