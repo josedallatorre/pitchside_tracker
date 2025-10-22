@@ -12,7 +12,6 @@ XAUTH=$HOME/.Xauthority
 xhost +local:docker
 docker run \
     -it --rm \
-    $VOLUMES \
     -v ${XSOCK}:${XSOCK} \
     -v ${XAUTH}:${XAUTH} \
     -e DISPLAY=${DISPLAY} \
