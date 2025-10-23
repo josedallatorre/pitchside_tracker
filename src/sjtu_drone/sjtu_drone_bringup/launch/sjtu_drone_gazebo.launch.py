@@ -18,11 +18,11 @@ import yaml
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction
-from launch.substitutions import LaunchConfiguration
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction, SetEnvironmentVariable
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare 
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-
 import xacro
 
 
@@ -32,6 +32,12 @@ def generate_launch_description():
                                     description="Whether to execute gzclient")
     xacro_file_name = "sjtu_drone.urdf.xacro"
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
+
+    example_pkg_path = get_package_share_directory('sjtu_drone_description')  # Replace with your own package name
+    models_path = os.path.join(example_pkg_path, 'models')
+    set_model_path = SetEnvironmentVariable(name='GZ_MODEL_PATH', value=models_path)
+
+    
     xacro_file = os.path.join(
         get_package_share_directory("sjtu_drone_description"),
         "urdf", xacro_file_name
@@ -53,7 +59,7 @@ def generate_launch_description():
 
     world_file_default = os.path.join(
         get_package_share_directory("sjtu_drone_description"),
-        "worlds", "playground.world"
+        "worlds", "football_pitch.world"
     )
 
     world_file = LaunchConfiguration('world', default=world_file_default)
@@ -75,6 +81,7 @@ def generate_launch_description():
         return []
 
     return LaunchDescription([
+        set_model_path,
         world,
         use_gui,
         Node(
