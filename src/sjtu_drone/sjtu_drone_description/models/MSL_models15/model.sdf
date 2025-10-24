@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="MSL_models15">
+    <include>
+      <uri>model://MSL_models15/RoboCup15_MSL_Field</uri>
+    </include>
+    <include>
+      <uri>model://MSL_models15/RoboCup15_MSL_Football</uri>
+    </include>
+    <include>
+      <uri>model://MSL_models15/RoboCup15_MSL_Goal</uri>
+    </include>
+  </model>
+</sdf>
