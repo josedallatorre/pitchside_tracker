@@ -35,8 +35,10 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'spawn_sideline = pitchside_tracker.spawn_sideline:main',
+            'image_viewer = pitchside_tracker.image_viewer_node:main',
             'tracking_node = pitchside_tracker.tracking_node:main',
+            'yolo_ball_tracker = pitchside_tracker.yolo_ball_tracker_node:main',
+            'simple_ball_follower = pitchside_tracker.simple_ball_follower:main',
         ],
     },
 )
