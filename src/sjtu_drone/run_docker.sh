@@ -19,6 +19,8 @@ docker run \
     --env=QT_X11_NO_MITSHM=1 \
     --privileged \
     --net=host \
+    --gpus all \
     --name="sjtu_drone" \
-    josedallatorre/sjtu_drone
+    josedallatorre/sjtu_drone:latest 
+
 xhost -local:docker
