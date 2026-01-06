@@ -7,6 +7,12 @@ RUN apt-get update \
     mesa-utils \
     build-essential \
     && apt-get clean
+RUN curl -L https://bootstrap.pypa.io/get-pip.py  -o get-pip.py 
+RUN python3 get-pip.py
+RUN pip install ultralytics opencv-python
+RUN pip uninstall -y numpy
+RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+RUN pip install "numpy<2"
 
 # Get gazebo binaries
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
@@ -19,22 +25,24 @@ RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu `lsb_release -cs` 
     && apt-get clean
 RUN rosdep init && rosdep update
 
+RUN curl -L https://github.com/osrf/gazebo_models/archive/refs/heads/master.zip -o /tmp/gazebo_models.zip \
+    && unzip /tmp/gazebo_models.zip -d /tmp && mkdir -p ~/.gazebo/models/ && mv /tmp/gazebo_models-master/* ~/.gazebo/models/ \
+    && rm -r /tmp/gazebo_models.zip
+
 RUN mkdir -p /ros2_ws/src
 COPY ./sjtu_drone_description /ros2_ws/src/sjtu_drone_description
 COPY ./sjtu_drone_bringup /ros2_ws/src/sjtu_drone_bringup
 COPY ./sjtu_drone_control /ros2_ws/src/sjtu_drone_control
 COPY ./pitchside_tracker /ros2_ws/src/pitchside_tracker
 
-RUN curl -L https://github.com/osrf/gazebo_models/archive/refs/heads/master.zip -o /tmp/gazebo_models.zip \
-    && unzip /tmp/gazebo_models.zip -d /tmp && mkdir -p ~/.gazebo/models/ && mv /tmp/gazebo_models-master/* ~/.gazebo/models/ \
-    && rm -r /tmp/gazebo_models.zip
-
 WORKDIR /ros2_ws
-RUN apt-get update && \
-    /bin/bash -c 'cd /ros2_ws/ \
+
+RUN /bin/bash -c 'cd /ros2_ws/ \
     && source /opt/ros/humble/setup.bash \
-    && rosdep install --from-paths src --ignore-src -r -y \
-    && colcon build' && \
-    apt-get clean
+    && rosdep install --from-paths src --ignore-src -r -y'
+
+RUN /bin/bash -c 'cd /ros2_ws/ \
+    && source /opt/ros/humble/setup.bash \
+    && colcon build' 
 
 CMD ["/bin/bash", "-c", "source /opt/ros/humble/setup.bash && source /ros2_ws/install/setup.bash && ros2 launch sjtu_drone_bringup sjtu_drone_bringup.launch.py"]
