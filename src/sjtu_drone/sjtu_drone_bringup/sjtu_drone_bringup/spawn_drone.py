@@ -17,6 +17,8 @@
 import sys
 import rclpy
 from gazebo_msgs.srv import SpawnEntity
+from geometry_msgs.msg import Pose
+from std_msgs.msg import Empty
 
 
 def main(args=None):
@@ -32,6 +34,16 @@ def main(args=None):
     req.xml = content
     req.robot_namespace = namespace
     req.reference_frame = "world"
+    req.initial_pose = Pose()
+
+    # example: spawn 20m behind the kick-off, 0 center, 3m above ground
+    req.initial_pose.position.x = -20.0
+    req.initial_pose.position.y = 0.0
+    req.initial_pose.position.z = 3.0
+
+    # no rotation (level)
+    req.initial_pose.orientation.w = 1.0
+
 
     while not cli.wait_for_service(timeout_sec=1.0):
         node.get_logger().info('service not available, waiting again...')
@@ -42,6 +54,25 @@ def main(args=None):
     if future.result() is not None:
         node.get_logger().info(
             'Result ' + str(future.result().success) + " " + future.result().status_message)
+        if future.result().success:
+            # ---- TAKEOFF COMMAND ----
+            takeoff_topic = f'{namespace}/takeoff'
+            takeoff_pub = node.create_publisher(Empty, takeoff_topic, 10)
+
+            node.get_logger().info(f'Waiting for subscriber on {takeoff_topic}...')
+
+            # Wait until the drone controller is listening
+            while takeoff_pub.get_subscription_count() == 0:
+                rclpy.spin_once(node, timeout_sec=0.2)
+
+            node.get_logger().info('Drone controller detected, sending takeoff')
+
+            msg = Empty()
+            takeoff_pub.publish(msg)
+
+            # Ensure it actually leaves the node
+            rclpy.spin_once(node, timeout_sec=0.5)
+
     else:
         node.get_logger().info('Service call failed %r' % (future.exception(),))
 
