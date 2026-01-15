@@ -22,14 +22,14 @@ class YoloBallTracker(Node):
 
         # Parameters
         self.declare_parameter('image_topic', '/simple_drone/front/image_raw')
-        self.declare_parameter('model_path', 'yolov8n.pt')
+        self.declare_parameter('model_path', 'yolov8s.pt')
         self.declare_parameter('confidence', 0.4)
 
         image_topic = self.get_parameter('image_topic').value
         model_path = self.get_parameter('model_path').value
         self.conf = self.get_parameter('confidence').value
 
-        self.model = YOLO("yolov8n.pt")   # NOT nano
+        self.model = YOLO("yolov8s.pt")   # NOT nano
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
