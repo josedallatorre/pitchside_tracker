@@ -142,4 +142,9 @@ def generate_launch_description():
             }],
             output='screen'
         ),
+        Node(
+            package='simple_ball_follower',
+            executable='simple_ball_follower',
+            name='simple_ball_follower',
+        ),
     ])
