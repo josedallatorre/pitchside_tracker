@@ -15,14 +15,14 @@
     <include>
       <name>goal1</name>
       <uri>model://MSL_models15/RoboCup15_MSL_Goal</uri>
-      <pose>9 0 0.0 0 0 0</pose>
+      <pose>90 0 0.0 0 0 0</pose>
     </include>
 
     <!-- Goal 2 -->
     <include>
       <name>goal2</name>
       <uri>model://MSL_models15/RoboCup15_MSL_Goal</uri>
-      <pose>-9 0 0.0 0 0 3.14</pose>
+      <pose>-90 0 0.0 0 0 3.14</pose>
     </include>
   </world>
 </sdf>
