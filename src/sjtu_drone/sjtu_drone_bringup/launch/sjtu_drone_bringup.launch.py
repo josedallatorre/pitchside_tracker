@@ -122,15 +122,6 @@ def generate_launch_description():
             function=get_teleop_controller,
             kwargs={'model_ns': model_ns},
         ),
-        
-        Node(
-            package='pitchside_tracker',
-            executable='image_viewer',
-            name='image_viewer',
-            parameters=[{
-                'image_topic': '/simple_drone/front/image_raw'
-            }]
-        ),
         Node(
             package='pitchside_tracker',
             executable='yolo_ball_tracker',
@@ -143,8 +134,16 @@ def generate_launch_description():
             output='screen'
         ),
         Node(
-            package='simple_ball_follower',
+            package='pitchside_tracker',
             executable='simple_ball_follower',
             name='simple_ball_follower',
+        ),
+        Node(
+            package='pitchside_tracker',
+            executable='ball_terminal_controller',
+            name='ball_terminal_controller',
+            namespace=model_ns,
+            output="screen",
+            prefix="xterm -e",
         ),
     ])
