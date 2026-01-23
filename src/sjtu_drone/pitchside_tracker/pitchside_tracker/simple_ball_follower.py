@@ -8,69 +8,75 @@ class SimpleBallFollower(Node):
     def __init__(self):
         super().__init__('simple_ball_follower')
 
-        # Subscribe to detected ball position
-        self.sub = self.create_subscription(
-            Point,
-            'ball_position',
-            self.ball_cb,
-            10
-        )
+        self.sub = self.create_subscription(Point, 'ball_position', self.ball_cb, 10)
+        self.cmd_pub = self.create_publisher(Twist, 'simple_drone/cmd_vel', 10)
 
-        # Publish drone velocity
-        self.cmd_pub = self.create_publisher(
-            Twist,
-            '~/cmd_vel',
-            10
-        )
-
-        # Camera resolution (MUST match your camera)
         self.img_w = 640
         self.img_h = 480
 
-        # Gains (SAFE START)
+        # Gains
         self.k_yaw = 0.5
         self.k_z = 0.4
+        self.k_x_base = 0.0005    # base depth gain
+        self.k_x_speedup = 0.001  # additional gain if ball is approaching fast
 
-        # Command limits
+        # Limits
         self.max_yaw = 0.4
         self.max_z = 0.3
+        self.max_x = 0.8           # increase max forward speed
 
-        # Ball timeout
+        # Desired ball size (controls distance)
+        self.target_area = 900
+
         self.last_seen = time.time()
-        self.timeout = 0.5  # seconds
+        self.timeout = 0.5
 
-        # Safety timer
+        # Track previous area to detect ball speed
+        self.prev_area = None
+        self.prev_time = None
+
         self.create_timer(0.1, self.safety_stop)
 
-        self.get_logger().info("Simple ball follower started")
+        self.get_logger().info("Ball follower running with adaptive forward speed")
 
     def ball_cb(self, msg):
-        self.last_seen = time.time()
+        now = time.time()
+        self.last_seen = now
 
-        cx = msg.x
-        cy = msg.y
+        cx, cy, area = msg.x, msg.y, msg.z
 
-        # Normalize pixel error
-        ex = (cx - self.img_w / 2) / (self.img_w / 2)
-        ey = (cy - self.img_h / 2) / (self.img_h / 2)
+        ex = (cx - self.img_w/2) / (self.img_w/2)
+        ey = (cy - self.img_h/2) / (self.img_h/2)
+        ez = self.target_area - area
+
+        # Estimate approach speed
+        approach_speed = 0.0
+        if self.prev_area is not None and self.prev_time is not None:
+            dt = now - self.prev_time
+            if dt > 0:
+                approach_speed = (area - self.prev_area) / dt  # positive if ball is getting bigger (approaching)
+
+        self.prev_area = area
+        self.prev_time = now
+
+        # Increase forward speed if ball is approaching
+        k_x_dynamic = self.k_x_base + self.k_x_speedup * max(approach_speed, 0.0)
 
         cmd = Twist()
-
-        # Rotate to center ball horizontally
         cmd.angular.z = -self.k_yaw * ex
-
-        # Move up/down to center vertically
         cmd.linear.z = -self.k_z * ey
+        cmd.linear.x = k_x_dynamic * ez
 
-        # Clamp values
+        # Apply limits
         cmd.angular.z = max(min(cmd.angular.z, self.max_yaw), -self.max_yaw)
         cmd.linear.z = max(min(cmd.linear.z, self.max_z), -self.max_z)
+        cmd.linear.x = max(min(cmd.linear.x, self.max_x), 0.0)  # only forward
 
         self.cmd_pub.publish(cmd)
 
     def safety_stop(self):
         if time.time() - self.last_seen > self.timeout:
-            self.cmd_pub.publish(Twist())  # hover
+            self.cmd_pub.publish(Twist())
 
 
 def main(args=None):
@@ -79,3 +85,7 @@ def main(args=None):
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
