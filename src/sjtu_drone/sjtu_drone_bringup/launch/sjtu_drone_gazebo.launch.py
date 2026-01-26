@@ -76,7 +76,11 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(
                     os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
                 ),
-                launch_arguments={'verbose': 'true'}.items()
+                launch_arguments={
+                    'world': world_file,
+                    'verbose': 'true',
+                    'gui': LaunchConfiguration('use_gui')
+                }.items()
             )]
         return []
 
