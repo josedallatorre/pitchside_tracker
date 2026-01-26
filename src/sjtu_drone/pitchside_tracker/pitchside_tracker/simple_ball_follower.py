@@ -18,18 +18,18 @@ class SimpleBallFollower(Node):
         self.img_h = 480
 
         # Gains
-        self.k_yaw = 0.5
-        self.k_z = 0.4
-        self.k_x_base = 0.0005    # base depth gain
+        self.k_yaw = 0.6
+        self.k_z = 0.55
+        self.k_x_base = 0.0008    # base depth gain
         self.k_x_speedup = 0.001  # additional gain if ball is approaching fast
 
         # Limits
-        self.max_yaw = 0.4
-        self.max_z = 0.3
-        self.max_x = 0.6           # max forward/backward speed
+        self.max_yaw = 0.6
+        self.max_z = 0.4
+        self.max_x = 0.8           # max forward/backward speed
 
         # Desired ball size (controls distance)
-        self.target_area = 900
+        self.target_area = 1100
 
         self.last_seen = time.time()
         self.timeout = 0.5
@@ -80,13 +80,13 @@ class SimpleBallFollower(Node):
         
         # ---- DISTANCE CONTROL (ADD HERE) ----
 
-        distance_deadband = 50
+        distance_deadband = 30
 
         if abs(ez) < distance_deadband:
             linear_x = 0.0
         else:
             # PD control (stable)
-            linear_x = self.k_x_base * ez - 0.0003 * approach_speed
+            linear_x = self.k_x_base * ez - 0.0004 * approach_speed
 
         # Clamp
         linear_x = max(min(linear_x, self.max_x), -self.max_x)
