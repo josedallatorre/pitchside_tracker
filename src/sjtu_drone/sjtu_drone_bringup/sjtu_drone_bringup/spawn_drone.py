@@ -36,8 +36,8 @@ def main(args=None):
     req.reference_frame = "world"
     req.initial_pose = Pose()
 
-    # example: spawn 20m behind the kick-off, 0 center, 3m above ground
-    req.initial_pose.position.x = -20.0
+    # initial position of the drone 
+    req.initial_pose.position.x = -6.0
     req.initial_pose.position.y = 0.0
     req.initial_pose.position.z = 3.0
 
