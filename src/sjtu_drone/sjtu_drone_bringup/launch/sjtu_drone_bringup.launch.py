@@ -146,4 +146,20 @@ def generate_launch_description():
             output="screen",
             prefix="xterm -e",
         ),
+        Node(
+            package='pitchside_tracker',
+            executable='spawn_ball',
+            output='screen'
+        ),
+        Node(
+            package='pitchside_tracker',
+            executable='kick_ball_server',
+            name='kick_ball_server',
+        ),
+        Node(
+            package='pitchside_tracker',
+            executable='ball_pass_client',
+            name='ball_pass_client',
+        ),
+
     ])
