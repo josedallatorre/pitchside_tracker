@@ -35,6 +35,7 @@ COPY ./sjtu_drone_bringup /ros2_ws/src/sjtu_drone_bringup
 COPY ./sjtu_drone_control /ros2_ws/src/sjtu_drone_control
 COPY ./pitchside_tracker /ros2_ws/src/pitchside_tracker
 COPY ./pitchside_tracker_interfaces /ros2_ws/src/pitchside_tracker_interfaces
+COPY ./yolov8s.pt /ros2_ws/yolov8s.pt
 
 WORKDIR /ros2_ws
 
