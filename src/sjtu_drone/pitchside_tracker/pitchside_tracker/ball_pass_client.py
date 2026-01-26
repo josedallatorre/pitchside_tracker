@@ -2,53 +2,85 @@ import rclpy
 from rclpy.node import Node
 from pitchside_tracker_interfaces.srv import KickBall
 from gazebo_msgs.msg import ModelStates
+from std_msgs.msg import Bool
 import math
 
 
 class BallPassClient(Node):
     def __init__(self):
         super().__init__('ball_pass_client')
-        self.cli = self.create_client(KickBall, '/kick_ball')
 
-        # Wait for service to be available
+        # ---- Service client ----
+        self.cli = self.create_client(KickBall, '/kick_ball')
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Waiting for /kick_ball service...')
 
-        # Subscribe to Gazebo model states
+        # ---- State ----
+        self.yolo_loaded = False
         self.ball_loaded = False
         self.ball_position = (0.0, 0.0, 0.0)
-        self.subscription = self.create_subscription(
+
+        # ---- Subscribers ----
+        self.create_subscription(
+            Bool,
+            '/yolo_tracker/ready',
+            self.yolo_ready_callback,
+            10
+        )
+
+        self.create_subscription(
             ModelStates,
             '/gazebo/model_states',
             self.model_states_callback,
             10
         )
 
-        self.get_logger().info('Waiting for football to appear in Gazebo...')
-        while not self.ball_loaded:
-            rclpy.spin_once(self)
+        # ---- Wait for YOLO ----
+        self.get_logger().info('Waiting for YOLO to load...')
+        while rclpy.ok() and not self.yolo_loaded:
+            rclpy.spin_once(self, timeout_sec=0.1)
 
-        self.get_logger().info('Football detected in Gazebo. Ready to pass!')
+        self.get_logger().info('YOLO is ready. Ready to pass!')
+
+    # ---------------- Callbacks ----------------
+
+    def yolo_ready_callback(self, msg: Bool):
+        if msg.data:
+            self.yolo_loaded = True
 
     def model_states_callback(self, msg: ModelStates):
         if 'football' in msg.name:
-            index = msg.name.index('football')
-            position = msg.pose[index].position
-            self.ball_position = (position.x, position.y, position.z)
+            idx = msg.name.index('football')
+            pos = msg.pose[idx].position
+            self.ball_position = (pos.x, pos.y, pos.z)
             self.ball_loaded = True
 
+    # ---------------- Helpers ----------------
+
     def distance(self, a, b):
-        return math.sqrt((a[0]-b[0])**2 + (a[1]-b[1])**2 + (a[2]-b[2])**2)
+        return math.sqrt(
+            (a[0] - b[0]) ** 2 +
+            (a[1] - b[1]) ** 2 +
+            (a[2] - b[2]) ** 2
+        )
+
+    # ---------------- Main Logic ----------------
 
     def pass_ball(self, positions, duration=1.0, tolerance=0.05):
         """
-        positions: list of (x,y,z)
+        positions: list of (x, y, z)
         duration: seconds for each pass
-        tolerance: distance threshold to consider the pass complete
+        tolerance: distance threshold to consider pass complete
         """
-        for i in range(len(positions)-1):
+
+        # Wait until ball is detected
+        self.get_logger().info('Waiting for ball detection...')
+        while rclpy.ok() and not self.ball_loaded:
+            rclpy.spin_once(self, timeout_sec=0.1)
+
+        for i in range(len(positions) - 1):
             start = positions[i]
-            end = positions[i+1]
+            end = positions[i + 1]
 
             self.get_logger().info(
                 f'Passing ball from {start} to {end} over {duration}s'
@@ -63,14 +95,16 @@ class BallPassClient(Node):
             future = self.cli.call_async(req)
             rclpy.spin_until_future_complete(self, future)
 
-            if future.result().success:
-                self.get_logger().info(f'Pass command sent: {future.result().message}')
-            else:
-                self.get_logger().warn(f'Pass command failed: {future.result().message}')
-                continue  # skip waiting if request failed
+            if not future.result() or not future.result().success:
+                self.get_logger().warn(
+                    f'Pass failed: {future.result().message if future.result() else "No response"}'
+                )
+                continue
 
-            # Wait until ball reaches the target position
-            while self.distance(self.ball_position, end) > tolerance:
+            self.get_logger().info('Pass command sent, waiting for ball...')
+
+            # Wait until ball reaches target
+            while rclpy.ok() and self.distance(self.ball_position, end) > tolerance:
                 rclpy.spin_once(self, timeout_sec=0.05)
 
             self.get_logger().info(f'Ball reached {end}')
@@ -80,13 +114,12 @@ def main():
     rclpy.init()
     client = BallPassClient()
 
-    # Example sequence: ball moves along 4 points
     positions = [
-        (0.0, 0.0, 1.1),   # start
-        (10.0, 0.0, 1.1),   # first pass
-        (10.0, 10.0, 1.1),   # second pass
-        (0.0, 5.0, 1.1),    # third pass
-        (0.0, 0.0, 1.1)
+        (0.0, 0.0, 1.1),
+        (10.0, 0.0, 1.1),
+        (10.0, 10.0, 1.1),
+        (0.0, 5.0, 1.1),
+        (0.0, 0.0, 1.1),
     ]
 
     client.pass_ball(positions, duration=20.0)
