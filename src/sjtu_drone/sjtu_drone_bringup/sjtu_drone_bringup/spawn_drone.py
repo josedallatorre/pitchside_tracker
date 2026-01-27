@@ -37,7 +37,7 @@ def main(args=None):
     req.initial_pose = Pose()
 
     # initial position of the drone 
-    req.initial_pose.position.x = -6.0
+    req.initial_pose.position.x = -10.0
     req.initial_pose.position.y = 0.0
     req.initial_pose.position.z = 3.0
 
