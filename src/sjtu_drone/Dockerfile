@@ -1,5 +1,7 @@
 FROM ros:humble-ros-core-jammy
 
+RUN rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update \
     && apt-get install -y \
     wget curl unzip \
@@ -36,6 +38,8 @@ COPY ./sjtu_drone_control /ros2_ws/src/sjtu_drone_control
 COPY ./pitchside_tracker /ros2_ws/src/pitchside_tracker
 COPY ./pitchside_tracker_interfaces /ros2_ws/src/pitchside_tracker_interfaces
 COPY ./yolov8s.pt /ros2_ws/yolov8s.pt
+
+RUN pip install lap
 
 WORKDIR /ros2_ws
 
