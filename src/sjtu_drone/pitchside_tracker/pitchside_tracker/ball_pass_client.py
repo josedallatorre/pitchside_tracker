@@ -116,13 +116,13 @@ def main():
 
     positions = [
         (0.0, 0.0, 1.1),
-        (10.0, 0.0, 1.1),
-        (10.0, 10.0, 1.1),
-        (0.0, 5.0, 1.1),
+        (60.0, 0.0, 1.1),
+        (60.0, 40.0, 1.1),
+        (0.0, 40.0, 1.1),
         (0.0, 0.0, 1.1),
     ]
 
-    client.pass_ball(positions, duration=20.0)
+    client.pass_ball(positions, duration=200.0)
 
     client.destroy_node()
     rclpy.shutdown()
