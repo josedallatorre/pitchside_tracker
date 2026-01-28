@@ -32,7 +32,7 @@ class KickBallServer(Node):
         self.step = 0
 
         # camera FPS (controls update frequency)
-        self.fps = 20.0
+        self.fps = 30.0
 
     def model_states_callback(self, msg: ModelStates):
         try:
@@ -42,14 +42,15 @@ class KickBallServer(Node):
         except ValueError:
             # football not found yet
             pass
-
+    
     def kick_callback(self, request, response):
         # Use current ball position as start
-        self.start = self.ball_position
+        self.start = tuple(self.ball_position)  # copy ONCE
         self.end = (request.x, request.y, request.z)
 
         self.steps = int(request.duration * self.fps)
         self.step = 0
+        self.start_time = self.get_clock().now()
 
         self.timer = self.create_timer(1.0 / self.fps, self.update_ball)
 
@@ -58,19 +59,26 @@ class KickBallServer(Node):
         return response
 
     def update_ball(self):
-        if self.step >= self.steps:
-            self.timer.cancel()
-            return
+        # total duration
+        total_time = self.steps / self.fps
 
-        t = self.step / self.steps
+        # elapsed real time
+        elapsed = (self.get_clock().now() - self.start_time).nanoseconds * 1e-9
+        t = elapsed / total_time
+
+        if t >= 1.0:
+            self.timer.cancel()
+            t = 1.0
 
         # linear interpolation for x and y
         x = self.start[0] + t * (self.end[0] - self.start[0])
         y = self.start[1] + t * (self.end[1] - self.start[1])
-        # parabolic arc for z
-        z = (1 - t) * self.start[2] + t * self.end[2] + 0.5 * 9.81 * t * (1 - t)
 
-        # set new state
+        # clean parabolic arc (visual, not physics)
+        h = 1.0  # max height of the kick (meters)
+        z = (1 - t) * self.start[2] + t * self.end[2] + 4 * h * t * (1 - t)
+
+        # prepare entity state
         state = EntityState()
         state.name = 'football'
         state.reference_frame = 'world'
@@ -82,12 +90,12 @@ class KickBallServer(Node):
         # call Gazebo service
         req = SetEntityState.Request()
         req.state = state
-        if self.client.wait_for_service(timeout_sec=1.0):
+
+        if self.client.wait_for_service(timeout_sec=0.1):
             self.client.call_async(req)
 
-        self.step += 1
 
-
+    
 def main():
     rclpy.init()
     node = KickBallServer()
