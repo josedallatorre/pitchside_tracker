@@ -15,6 +15,7 @@ RUN pip install ultralytics opencv-python
 RUN pip uninstall -y numpy
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 RUN pip install "numpy<2"
+RUN pip install lap
 
 # Get gazebo binaries
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
@@ -38,8 +39,6 @@ COPY ./sjtu_drone_control /ros2_ws/src/sjtu_drone_control
 COPY ./pitchside_tracker /ros2_ws/src/pitchside_tracker
 COPY ./pitchside_tracker_interfaces /ros2_ws/src/pitchside_tracker_interfaces
 COPY ./yolov8s.pt /ros2_ws/yolov8s.pt
-
-RUN pip install lap
 
 WORKDIR /ros2_ws
 
