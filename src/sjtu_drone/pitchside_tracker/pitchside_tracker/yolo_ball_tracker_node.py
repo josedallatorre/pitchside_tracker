@@ -33,7 +33,7 @@ class YoloBallTracker(Node):
 
         self.ball_track_id = None
         self.last_seen_time = 0.0
-        self.track_timeout = 0.7
+        self.track_timeout = 2.0
 
         # Shared frame (protected)
         self.frame_lock = threading.Lock()
@@ -51,7 +51,7 @@ class YoloBallTracker(Node):
             frame,
             persist=True,
             device=0 if torch.cuda.is_available() else "cpu",
-            imgsz=1280,
+            imgsz=640,
             conf=0.18,
             tracker="bytetrack.yaml",
             verbose=False
