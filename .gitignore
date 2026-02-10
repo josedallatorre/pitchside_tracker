@@ -5,3 +5,6 @@ log/*
 src/build/*
 src/install/*
 src/log/*
+plugins/
+bin/
+__pycache__/
