@@ -122,7 +122,7 @@ def main():
         (0.0, 0.0, 1.1),
     ]
 
-    client.pass_ball(positions, duration=200.0)
+    client.pass_ball(positions, duration=120.0)
 
     client.destroy_node()
     rclpy.shutdown()
