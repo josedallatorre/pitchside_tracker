@@ -16,6 +16,7 @@ RUN pip uninstall -y numpy
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 RUN pip install "numpy<2"
 RUN pip install lap
+RUN pip install pyyaml
 
 # Get gazebo binaries
 RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list \
