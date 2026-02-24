@@ -19,12 +19,16 @@ import rclpy
 from gazebo_msgs.srv import SpawnEntity
 from geometry_msgs.msg import Pose
 from std_msgs.msg import Empty
-
+from pitchside_tracker.utils.yaml_loader import load_yaml
 
 def main(args=None):
     rclpy.init(args=args)
     node = rclpy.create_node('spawn_drone')
     cli = node.create_client(SpawnEntity, '/spawn_entity')
+
+    config = load_yaml()
+    drone_config = config.get("drone")
+    pos = drone_config["position"]
 
     content = sys.argv[1]
     namespace = sys.argv[2]
@@ -37,9 +41,9 @@ def main(args=None):
     req.initial_pose = Pose()
 
     # initial position of the drone 
-    req.initial_pose.position.x = -12.0
-    req.initial_pose.position.y = 0.0
-    req.initial_pose.position.z = 3.0
+    req.initial_pose.position.x = pos[0]
+    req.initial_pose.position.y = pos[1]
+    req.initial_pose.position.z = pos[2]
 
     # no rotation (level)
     req.initial_pose.orientation.w = 1.0
