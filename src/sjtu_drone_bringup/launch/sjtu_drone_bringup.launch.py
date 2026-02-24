@@ -148,6 +148,11 @@ def generate_launch_description():
         ),
         Node(
             package='pitchside_tracker',
+            executable='spawn_players',
+            output='screen'
+        ),
+        Node(
+            package='pitchside_tracker',
             executable='kick_ball_server',
             name='kick_ball_server',
         ),
