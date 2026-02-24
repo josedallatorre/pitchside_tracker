@@ -2,12 +2,13 @@
 import rclpy
 from rclpy.node import Node
 from gazebo_msgs.srv import SpawnEntity
-import os
-
+from pitchside_tracker.utils.yaml_loader import load_yaml
 
 class BallSpawner(Node):
     def __init__(self):
         super().__init__('ball_spawner')
+        # --- Load YAML config ---
+        self.config = load_yaml()
 
         self.cli = self.create_client(SpawnEntity, '/spawn_entity')
 
@@ -20,10 +21,12 @@ class BallSpawner(Node):
         req = SpawnEntity.Request()
         req.name = "football"
         req.xml = open('/ros2_ws/src/sjtu_drone_description/models/MSL_models15/RoboCup15_MSL_Football/model.sdf').read()
+        drone_config = self.config.get("drone")
+        pos = drone_config["position"]
         req.robot_namespace = ""
-        req.initial_pose.position.x = 0.0
-        req.initial_pose.position.y = 0.0
-        req.initial_pose.position.z = 0.11
+        req.initial_pose.position.x = pos[0] 
+        req.initial_pose.position.y = pos[1]
+        req.initial_pose.position.z = pos[2]
 
         self.cli.call_async(req)
         self.get_logger().info("Football spawned in Gazebo")
