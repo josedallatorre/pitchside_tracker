@@ -22,6 +22,8 @@ setup(
         ('share/ament_index/resource_index/packages', [f'resource/{package_name}']),
         (f'share/{package_name}', ['package.xml']),
         (f'share/{package_name}/launch', glob.glob('launch/*.py')),
+        (f'share/{package_name}/utils', glob.glob('utils/*.py')),
+        (f'share/{package_name}/config', glob.glob('config/*.yaml')),
     ] + get_data_files('models', f'share/{package_name}/models') \
       + get_data_files('worlds', f'share/{package_name}/worlds'),
     install_requires=['setuptools'],
@@ -39,6 +41,7 @@ setup(
             'simple_ball_follower = pitchside_tracker.simple_ball_follower:main',
             'ball_terminal_controller = pitchside_tracker.ball_terminal_controller:main',
             'spawn_ball = pitchside_tracker.spawn_ball:main',
+            'spawn_players = pitchside_tracker.spawn_players:main',
             'kick_ball_server = pitchside_tracker.kick_ball_server:main',
             'ball_pass_client = pitchside_tracker.ball_pass_client:main',
         ],
