@@ -17,6 +17,7 @@ class YoloBallTracker(Node):
 
         self.bridge = CvBridge()
         self.model = YOLO("yolov8s.pt")
+        self.frame_count = 0
 
         self.ready_pub = self.create_publisher(Bool, '/yolo_tracker/ready', 1)
         self.pub = self.create_publisher(Point, 'ball_position', 10)
@@ -42,16 +43,22 @@ class YoloBallTracker(Node):
         # GUI timer (30 FPS)
         self.create_timer(0.03, self.visualize)
 
+        cv2.namedWindow("YOLO Ball Tracking", cv2.WINDOW_NORMAL)
+        cv2.resizeWindow("YOLO Ball Tracking", 640, 360)
+
         self.get_logger().info("YOLO Ball Tracker started")
 
     def image_cb(self, msg):
+        self.frame_count += 1
+        if self.frame_count % 2 != 0:
+            return
         frame = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
 
         results = self.model.track(
             frame,
             persist=True,
             device=0 if torch.cuda.is_available() else "cpu",
-            imgsz=640,
+            imgsz=960,
             conf=0.18,
             tracker="bytetrack.yaml",
             verbose=False
@@ -84,6 +91,8 @@ class YoloBallTracker(Node):
                 cx = (x1 + x2) // 2
                 cy = (y1 + y2) // 2
                 area = (x2 - x1) * (y2 - y1)
+                self.get_logger().info(f"Ball area: {area}")
+                self.get_logger().info(f"Frame shapre: {frame.shape}")
 
                 self.last_seen_time = now
 
