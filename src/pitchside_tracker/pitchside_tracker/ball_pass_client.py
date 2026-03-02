@@ -103,9 +103,6 @@ class BallPassClient(Node):
 
             # Wait until ball reaches the target
             while rclpy.ok() and distance(self.ball_position, end) > tolerance:
-                self.get_logger().info(
-        f"Ball pos: {self.ball_position} | Target: {end} | Dist: {distance(self.ball_position, end)}"
-    )
                 rclpy.spin_once(self, timeout_sec=0.05)
 
             self.get_logger().info(f'Ball reached {end}')
