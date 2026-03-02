@@ -28,8 +28,8 @@ class SimpleBallFollower(Node):
             Twist, 'simple_drone/cmd_vel', 10
         )
 
-        self.img_w = 640
-        self.img_h = 480
+        self.img_w = 1920
+        self.img_h = 1080
 
         # Gains
         self.k_yaw = 1.6      # FASTER yaw
@@ -42,7 +42,7 @@ class SimpleBallFollower(Node):
         self.max_x = 0.6
 
         # Distance control
-        self.target_area = 2000
+        self.target_area = 2500
         self.base_deadband = 20
 
         # Centering thresholds
