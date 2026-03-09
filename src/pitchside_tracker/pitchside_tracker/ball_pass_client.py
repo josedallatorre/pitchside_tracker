@@ -15,13 +15,13 @@ class BallPassClient(Node):
 
         # --- Load config from YAML ---
         self.config = load_yaml() or {}
-        player_positions = [tuple(p["position"]) for p in self.config.get("players", [])]
-        if not player_positions:
-            self.get_logger().warn("No player positions found in YAML. Using default positions.")
-            player_positions = [(0.0, 0.0, 1.1), (60.0, 0.0, 1.1)]  # fallback
+        kick_positions = [tuple(p["position"]) for p in self.config.get("kicks", [])]
+        if not kick_positions:
+            self.get_logger().warn("No kick positions found in YAML. Using default positions.")
+            kick_positions = [(0.0, 0.0, 1.1), (60.0, 0.0, 1.1)]  # fallback
 
         # Build the pass positions sequence
-        self.pass_positions = build_pass_positions(player_positions)
+        self.pass_positions = build_pass_positions(kick_positions)
 
         # --- Service client ---
         self.cli = self.create_client(KickBall, '/kick_ball')
@@ -113,7 +113,7 @@ def main():
     client = BallPassClient()
 
     # Start passing the ball using the sequence from YAML
-    client.pass_ball(speed=0.3)
+    client.pass_ball(speed=0.2)
 
     client.destroy_node()
     rclpy.shutdown()
