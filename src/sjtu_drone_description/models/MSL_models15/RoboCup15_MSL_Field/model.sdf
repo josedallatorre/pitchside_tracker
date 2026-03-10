@@ -4,13 +4,14 @@
     <static>true</static>
 
     <link name="field">
-      <pose>0 0 0.1 0 0 0</pose>
+      <pose>0 0 0.01 0 0 0</pose>
 
+      <!-- Main Field Collision -->
       <collision name="collision">
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>180 120</size>
+            <size>105 68</size>
           </plane>
         </geometry>
         <surface>
@@ -23,12 +24,13 @@
         </surface>
       </collision>
 
+      <!-- Main Field Visual -->
       <visual name="carpet">
         <cast_shadows>false</cast_shadows>
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>180 120</size>
+            <size>105 68</size>
           </plane>
         </geometry>
         <material>
@@ -40,13 +42,14 @@
         </material>
       </visual>
 
+      <!-- Top Border -->
       <visual name="base1">
-        <pose>0 67.5 0.1 0 0 0</pose>
+        <pose>0 34.75 0.01 0 0 0</pose>
         <cast_shadows>false</cast_shadows>
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>210 15</size>
+            <size>110 1.5</size>
           </plane>
         </geometry>
         <material>
@@ -58,13 +61,14 @@
         </material>
       </visual>
 
+      <!-- Bottom Border -->
       <visual name="base2">
-        <pose>0 -67.5 0.1 0 0 0</pose>
+        <pose>0 -34.75 0.01 0 0 0</pose>
         <cast_shadows>false</cast_shadows>
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>210 15</size>
+            <size>110 1.5</size>
           </plane>
         </geometry>
         <material>
@@ -76,13 +80,14 @@
         </material>
       </visual>
 
+      <!-- Right Border -->
       <visual name="base3">
-        <pose>97.5 0 0.1 0 0 0</pose>
+        <pose>53.25 0 0.01 0 0 0</pose>
         <cast_shadows>false</cast_shadows>
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>15 120</size>
+            <size>1.5 70</size>
           </plane>
         </geometry>
         <material>
@@ -94,13 +99,14 @@
         </material>
       </visual>
 
+      <!-- Left Border -->
       <visual name="base4">
-        <pose>-97.5 0 0.1 0 0 0</pose>
+        <pose>-53.25 0 0.01 0 0 0</pose>
         <cast_shadows>false</cast_shadows>
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>15 120</size>
+            <size>1.5 70</size>
           </plane>
         </geometry>
         <material>
