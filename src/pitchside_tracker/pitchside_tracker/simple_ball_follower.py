@@ -5,118 +5,172 @@ from std_msgs.msg import Bool
 import time
 
 
-class SimpleBallFollower(Node):
+class BallFollower(Node):
     def __init__(self):
         super().__init__('dynamic_ball_follower')
 
+        # ── State ──────────────────────────────────────────────────────────────
         self.yolo_ready = False
-        self.last_seen = time.time()
+        self.last_seen  = time.time()
 
-        self.prev_area = None
-        self.prev_linear_x = 0.0
-        self.prev_angular_z = 0.0
-        self.prev_linear_z = 0.0
+        self.area_f     = None
+        self.ex_f       = 0.0
+        self.ey_f       = 0.0
 
-        self.ball_sub = self.create_subscription(
-            Point, 'ball_position', self.ball_cb, 10
-        )
-        self.ready_sub = self.create_subscription(
-            Bool, '/yolo_tracker/ready', self.cb_ready, 10
-        )
+        self.area_vel   = 0.0
+        self.ex_vel     = 0.0
+        self.ey_vel     = 0.0
 
-        self.cmd_pub = self.create_publisher(
-            Twist, 'simple_drone/cmd_vel', 10
-        )
+        self.prev_time  = None
 
+        # ── ROS I/O ────────────────────────────────────────────────────────────
+        self.ball_sub  = self.create_subscription(Point, 'ball_position',       self.ball_cb,  10)
+        self.ready_sub = self.create_subscription(Bool,  '/yolo_tracker/ready', self.cb_ready, 10)
+        self.cmd_pub   = self.create_publisher(Twist, 'simple_drone/cmd_vel', 10)
+
+        # ── Image geometry ────────────────────────────────────────────────────
         self.img_w = 1920
         self.img_h = 1080
 
-        # Gains
-        self.k_yaw = 1.6      # FASTER yaw
-        self.k_z = 0.8
-        self.k_x = 0.0012    # FASTER approach
+        # ── Signal filter alphas ───────────────────────────────────────────────
+        # Higher = more responsive, lower = smoother
+        # Increased from 0.35 → 0.55: fast ball needs faster signal tracking
+        self.alpha_area = 0.55
+        self.alpha_ex   = 0.50
+        self.alpha_ey   = 0.50
+        # Velocity EMA: moderate, prevents noisy derivative
+        self.alpha_vel  = 0.35
 
-        # Limits
-        self.max_yaw = 2.0
-        self.max_z = 0.8
-        self.max_x = 0.6
+        # ── Distance control ───────────────────────────────────────────────────
+        self.target_area = 8000
 
-        # Distance control
-        self.target_area = 2500
-        self.base_deadband = 20
+        # ── PD gains: forward/back ─────────────────────────────────────────────
+        self.kp_x       =  0.010
+        # D-term increased 6x: must be large enough to actually brake
+        # at max approach velocity (~1000 px²/s → braking cmd = 0.0018*1000 = 1.8 → clamped to 0.45)
+        self.kd_x_brake =  0.0018  # always subtracted when area_vel > 0
 
-        # Centering thresholds
-        self.center_x = 0.25   # relaxed
-        self.center_y = 0.25
+        # ── PD gains: yaw ─────────────────────────────────────────────────────
+        self.kp_yaw =  1.0
+        self.kd_yaw =  0.4   # note: applied as subtraction below
 
+        # ── PD gains: altitude ────────────────────────────────────────────────
+        self.kp_z   =  0.5
+        self.kd_z   =  0.2   # note: applied as subtraction below
+
+        # ── Vertical tracking offset ───────────────────────────────────────────
+        self.vert_offset = 0.20
+
+        # ── Output limits ──────────────────────────────────────────────────────
+        self.max_x   = 0.15
+        self.max_yaw = 1.2
+        self.max_z   = 0.5
+
+        # ── Centering scale ────────────────────────────────────────────────────
+        self.center_min_scale = 0.40
+
+        # ── Timeout ────────────────────────────────────────────────────────────
         self.timeout = 2.0
-        self.create_timer(0.1, self.safety_stop)
 
-        self.get_logger().info("Fast Stable Ball Follower started")
+        self.create_timer(0.05, self.safety_stop)
+        self.get_logger().info("BallFollower v3 started")
 
+    # ──────────────────────────────────────────────────────────────────────────
     def cb_ready(self, msg: Bool):
         self.yolo_ready = msg.data
 
+    # ──────────────────────────────────────────────────────────────────────────
     def ball_cb(self, msg: Point):
         if not self.yolo_ready:
             return
 
-        self.last_seen = time.time()
+        now = time.time()
+        dt  = (now - self.prev_time) if self.prev_time is not None else 0.033
+        dt  = max(min(dt, 0.20), 0.005)
+        self.prev_time = now
+        self.last_seen = now
 
         cx, cy, area = msg.x, msg.y, msg.z
 
-        # --- Area smoothing ---
-        alpha_area = 0.6
-        area_f = area if self.prev_area is None else (
-            alpha_area * self.prev_area + (1 - alpha_area) * area
-        )
-        self.prev_area = area_f
+        ex_raw = (cx - self.img_w / 2) / (self.img_w / 2)
+        ey_raw = (cy - self.img_h / 2) / (self.img_h / 2)
 
-        # --- Errors ---
-        ex = (cx - self.img_w / 2) / (self.img_w / 2)
-        ey = (cy - self.img_h / 2) / (self.img_h / 2)
+        # ── Bootstrap ─────────────────────────────────────────────────────────
+        if self.area_f is None:
+            self.area_f = area
+            self.ex_f   = ex_raw
+            self.ey_f   = ey_raw
+            return
+
+        # ── Filter signals (before differentiation) ───────────────────────────
+        area_f = (1 - self.alpha_area) * self.area_f + self.alpha_area * area
+        ex_f   = (1 - self.alpha_ex)   * self.ex_f   + self.alpha_ex   * ex_raw
+        ey_f   = (1 - self.alpha_ey)   * self.ey_f   + self.alpha_ey   * ey_raw
+
+        # ── Velocity from filtered signals ────────────────────────────────────
+        raw_area_vel = (area_f - self.area_f) / dt
+        raw_ex_vel   = (ex_f   - self.ex_f)   / dt
+        raw_ey_vel   = (ey_f   - self.ey_f)   / dt
+
+        self.area_vel = (1 - self.alpha_vel) * self.area_vel + self.alpha_vel * raw_area_vel
+        self.ex_vel   = (1 - self.alpha_vel) * self.ex_vel   + self.alpha_vel * raw_ex_vel
+        self.ey_vel   = (1 - self.alpha_vel) * self.ey_vel   + self.alpha_vel * raw_ey_vel
+
+        self.area_f = area_f
+        self.ex_f   = ex_f
+        self.ey_f   = ey_f
+
+        # ── Centering scale ────────────────────────────────────────────────────
+        off_center   = abs(ex_f) + abs(ey_f)
+        center_scale = max(self.center_min_scale, 1.0 - 0.3 * off_center)
+
+        # ── Forward/back PD ───────────────────────────────────────────────────
         ez = self.target_area - area_f
 
-        # --- Yaw (aggressive when far) ---
-        angular_z = -self.k_yaw * ex * (1 + abs(ex))
+        # D-term active even inside deadband — critical for braking overshoot
+        # Braking: if area_vel > 0 (ball approaching), push backward
+        # Chasing: if area_vel < 0 (ball receding), push forward
+        d_term = -self.kd_x_brake * self.area_vel
 
-        # --- Vertical ---
-        linear_z = -self.k_z * ey
-
-        # --- Forward speed ramps with centering ---
-        centering_score = max(0.0, 1.0 - (abs(ex) + abs(ey)))
-        dynamic_deadband = self.base_deadband + 150 * (1 - centering_score)
-
-        if abs(ez) < dynamic_deadband:
-            linear_x = 0.0
+        if abs(ez) < 400:
+            # Inside deadband: only brake, don't drive
+            cmd_x = d_term * center_scale
         else:
-            linear_x = self.k_x * ez * centering_score
+            cmd_x = (self.kp_x * ez + d_term) * center_scale
 
-        # --- Minimum useful speeds ---
-        if 0 < abs(linear_x) < 0.15:
-            linear_x = 0.15 * (1 if linear_x > 0 else -1)
+        # ── Yaw PD ────────────────────────────────────────────────────────────
+        cmd_yaw = -(self.kp_yaw * ex_f + self.kd_yaw * self.ex_vel)
 
-        # --- Filtering ---
-        alpha = 0.5
-        linear_x = alpha * self.prev_linear_x + (1 - alpha) * linear_x
-        angular_z = alpha * self.prev_angular_z + (1 - alpha) * angular_z
-        linear_z = alpha * self.prev_linear_z + (1 - alpha) * linear_z
+        # ── Altitude PD ───────────────────────────────────────────────────────
+        ey_err  = ey_f - self.vert_offset
+        cmd_z   = -(self.kp_z * ey_err + self.kd_z * self.ey_vel)
 
-        self.prev_linear_x = linear_x
-        self.prev_angular_z = angular_z
-        self.prev_linear_z = linear_z
+        # ── No output smoothing — signal-side EMA is sufficient ───────────────
+        # Output EMA was delaying the D-term by 3+ frames, defeating its purpose
 
-        # --- Clamp ---
-        linear_x = max(min(linear_x, self.max_x), -self.max_x)
-        angular_z = max(min(angular_z, self.max_yaw), -self.max_yaw)
-        linear_z = max(min(linear_z, self.max_z), -self.max_z)
+        # ── Clamp ─────────────────────────────────────────────────────────────
+        #cmd_x   = max(min(cmd_x,   self.max_x),   -self.max_x)
+        # Replace the fixed clamp with a dynamic one
+        # Far away = allow faster chase, close = slow down
+        distance_scale = min(1.0, abs(ez) / 3000.0)  # ramps from 0→1 over 3000px² error
+        effective_max_x = self.max_x * distance_scale + 0.05  # floor of 0.05 m/s
+        cmd_x = max(min(cmd_x, effective_max_x), -effective_max_x)
+        cmd_yaw = max(min(cmd_yaw, self.max_yaw), -self.max_yaw)
+        cmd_z   = max(min(cmd_z,   self.max_z),   -self.max_z)
 
         cmd = Twist()
-        cmd.linear.x = linear_x
-        cmd.linear.z = linear_z
-        cmd.angular.z = angular_z
+        cmd.linear.x  = cmd_x
+        cmd.linear.z  = cmd_z
+        cmd.angular.z = cmd_yaw
         self.cmd_pub.publish(cmd)
 
+        self.get_logger().debug(
+            f"area={area_f:.0f}  ez={ez:.0f}  area_vel={self.area_vel:.1f}"
+            f"  P={self.kp_x*ez:.3f}  D={d_term:.3f}"
+            f"  cmd_x={cmd_x:.3f}  yaw={cmd_yaw:.3f}  z={cmd_z:.3f}"
+        )
+
+    # ──────────────────────────────────────────────────────────────────────────
     def safety_stop(self):
         if time.time() - self.last_seen > self.timeout:
             self.cmd_pub.publish(Twist())
@@ -124,7 +178,7 @@ class SimpleBallFollower(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = SimpleBallFollower()
+    node = BallFollower()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
