@@ -1,58 +1,58 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
-<!-- mass 0.41kg  -->
-<!-- inertia 3.2e-03kg m^2 -->
 
 <model name='football'>
-      <static>0</static>
-      <link name='ball'>
-        <pose>0 0 1.1 0 -0 0</pose>
-        <inertial>
-          <mass>0.41</mass>
-          <inertia>
-            <ixx>3.2e-03</ixx>
-            <iyy>3.2e-03</iyy>
-            <izz>3.2e-03</izz>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyz>0</iyz>
-          </inertia>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <sphere>
-              <radius>1.1</radius>
-            </sphere>
-          </geometry>
-          <surface>
-            <bounce>
-              <restitution_coefficient>1</restitution_coefficient>
-            </bounce>
-            <friction>
-              <ode>
-                <mu>1</mu>
-                <mu2>1</mu2>
-              </ode>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <scale>1.1 1.1 1.1</scale>
-              <uri>meshes/ball.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <velocity_decay>
-          <linear>0.005</linear>
-          <angular>0.005</angular>
-        </velocity_decay>
-        <gravity>1</gravity>
-      </link>
-      <pose>0 0 0 0 -0 0</pose>
-    </model>
+  <static>false</static>
+  <link name='ball'>
+    <pose>0 0 0.22 0 0 0</pose>
+
+    <inertial>
+      <mass>0.43</mass>
+      <inertia>
+        <ixx>0.0021</ixx>
+        <iyy>0.0021</iyy>
+        <izz>0.0021</izz>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyz>0</iyz>
+      </inertia>
+    </inertial>
+
+    <collision name='collision'>
+      <geometry>
+        <sphere>
+          <radius>0.22</radius>
+        </sphere>
+      </geometry>
+      <surface>
+        <bounce>
+          <restitution_coefficient>0.6</restitution_coefficient>
+        </bounce>
+        <friction>
+          <ode>
+            <mu>0.3</mu>
+            <mu2>0.3</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+
+    <visual name='visual'>
+      <geometry>
+        <mesh>
+          <scale>0.22 0.22 0.22</scale>
+          <uri>meshes/ball.dae</uri>
+        </mesh>
+      </geometry>
+    </visual>
+
+    <velocity_decay>
+      <linear>0.02</linear>
+      <angular>0.02</angular>
+    </velocity_decay>
+
+    <gravity>true</gravity>
+
+  </link>
+</model>
 </sdf>
