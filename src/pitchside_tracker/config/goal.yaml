@@ -1,0 +1,15 @@
+spawn_players: true
+
+drone:
+  position: [38.5, 0.0, 1.0]
+
+ball:
+  position: [41.5, 0.0, 0.11]
+
+kicks:
+  - name: kick1
+    position: [54.0, 3.0, 2.0]
+
+players:
+  - name: goalkeeper1
+    position: [52.0, 0.0, 0.0, 270]
