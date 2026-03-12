@@ -1,0 +1,24 @@
+spawn_players: true
+
+drone:
+  position: [-3.0, 0.0, 1.0]
+
+ball:
+  position: [0.0, 0.0, 0.11]
+
+kicks:
+  - name: kick1
+    position: [0.0, 5.0, 0.0]
+  - name: kick2
+    position: [0.0, -5.0, 0.0]
+  - name: kick3
+    position: [0.0, 5.0, 0.0]
+  - name: kick4
+    position: [0.0, -5.0, 0.0]
+
+
+players:
+  - name: player1
+    position: [0.0, 5.0, 0.0, 0]
+  - name: player2
+    position: [0.0, -5.0, 0.0, 180]
