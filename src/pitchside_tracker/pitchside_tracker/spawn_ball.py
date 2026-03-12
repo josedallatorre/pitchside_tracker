@@ -21,8 +21,9 @@ class BallSpawner(Node):
         req = SpawnEntity.Request()
         req.name = "football"
         req.xml = open('/ros2_ws/src/sjtu_drone_description/models/MSL_models15/RoboCup15_MSL_Football/model.sdf').read()
-        drone_config = self.config.get("drone")
-        pos = drone_config["position"]
+        ball_config = self.config.get("ball")
+        pos = ball_config["position"]
+        self.get_logger().info(f"pos:{pos}")
         req.robot_namespace = ""
         req.initial_pose.position.x = pos[0] 
         req.initial_pose.position.y = pos[1]
