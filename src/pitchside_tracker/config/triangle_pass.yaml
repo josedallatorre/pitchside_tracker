@@ -8,7 +8,7 @@ ball:
 
 kicks:
   - name: kick1
-    position: [-2.0, -2.0, 0.0]
+    position: [0.0, -2.0, 0.0]
   - name: kick2
     position: [5.0, 5.0, 0.0]
   - name: kick3
@@ -16,8 +16,8 @@ kicks:
 
 players:
   - name: player1
-    position: [-2.0, -2.0, 0.0]
+    position: [0.0, -2.0, 0.0, 180]
   - name: player2
-    position: [5.0, 5.0, 0.0]
+    position: [5.0, 5.0, 0.0, 315]
   - name: player3
-    position: [-5.0, 5.0, 0.0]
+    position: [-5.0, 5.0, 0.0, 45]
