@@ -16,6 +16,4 @@ def build_pass_positions(player_positions, ball_height=0.3, offset=0.8):
         kick_y = y1 + uy * offset
         pass_positions.append((kick_x, kick_y, ball_height))
 
-    # Close the loop: return to the first kick origin
-    pass_positions.append(pass_positions[0])
     return pass_positions
