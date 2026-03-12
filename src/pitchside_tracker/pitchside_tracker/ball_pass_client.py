@@ -17,8 +17,8 @@ class BallPassClient(Node):
         self.config = load_yaml() or {}
         kick_positions = [tuple(p["position"]) for p in self.config.get("kicks", [])]
         ball_config = self.config.get("ball")
-        pos = ball_config["position"]
-        kick_positions.insert(0,pos)
+        ball_pos = ball_config["position"]
+        kick_positions.insert(0,ball_pos) # insert ball position in first position
         self.get_logger().info(f"position:{kick_positions}")
         if not kick_positions:
             self.get_logger().warn("No kick positions found in YAML. Using default positions.")
