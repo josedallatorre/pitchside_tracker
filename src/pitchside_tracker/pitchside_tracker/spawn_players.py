@@ -3,6 +3,7 @@ import rclpy
 from rclpy.node import Node
 from gazebo_msgs.srv import SpawnEntity
 from pitchside_tracker.utils.yaml_loader import load_yaml
+from pitchside_tracker.utils.quaternion import quaternion_from_euler
 
 
 class PlayerSpawner(Node):
@@ -34,6 +35,13 @@ class PlayerSpawner(Node):
             req.initial_pose.position.x = pos[0]
             req.initial_pose.position.y = pos[1]
             req.initial_pose.position.z = pos[2]
+            qx, qy, qz, qw = quaternion_from_euler(0.0, 0.0, pos[3])
+            self.get_logger().info(f"Quaternion: {qx, qy, qz, qw}")
+
+            req.initial_pose.orientation.x = qx
+            req.initial_pose.orientation.y = qy
+            req.initial_pose.orientation.z = qz
+            req.initial_pose.orientation.w = qw
 
             self.cli.call_async(req)
             self.get_logger().info(f"Spawned {name} at {pos}")
