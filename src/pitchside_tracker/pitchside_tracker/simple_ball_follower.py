@@ -35,7 +35,7 @@ class BallFollower(Node):
         # ── Signal filter alphas ───────────────────────────────────────────────
         # Higher = more responsive, lower = smoother
         # Increased from 0.35 → 0.55: fast ball needs faster signal tracking
-        self.alpha_area = 0.55
+        self.alpha_area = 0.60
         self.alpha_ex   = 0.50
         self.alpha_ey   = 0.50
         # Velocity EMA: moderate, prevents noisy derivative
