@@ -39,7 +39,6 @@ setup(
         'console_scripts': [
             'yolo_ball_tracker = pitchside_tracker.yolo_ball_tracker_node:main',
             'simple_ball_follower = pitchside_tracker.simple_ball_follower:main',
-            'ball_terminal_controller = pitchside_tracker.ball_terminal_controller:main',
             'spawn_ball = pitchside_tracker.spawn_ball:main',
             'spawn_players = pitchside_tracker.spawn_players:main',
             'kick_ball_server = pitchside_tracker.kick_ball_server:main',

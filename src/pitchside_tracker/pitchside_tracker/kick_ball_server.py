@@ -1,12 +1,9 @@
 import rclpy
 from rclpy.node import Node
-
 from gazebo_msgs.srv import SetEntityState
 from gazebo_msgs.msg import EntityState
 from gazebo_msgs.msg import ModelStates
-
 from pitchside_tracker_interfaces.srv import KickBall
-
 
 class KickBallServer(Node):
 

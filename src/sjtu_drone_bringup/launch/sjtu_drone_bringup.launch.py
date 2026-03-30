@@ -135,14 +135,6 @@ def generate_launch_description():
         ),
         Node(
             package='pitchside_tracker',
-            executable='ball_terminal_controller',
-            name='ball_terminal_controller',
-            namespace=model_ns,
-            output="screen",
-            prefix="xterm -e",
-        ),
-        Node(
-            package='pitchside_tracker',
             executable='spawn_ball',
             output='screen'
         ),
