@@ -7,7 +7,7 @@ from pitchside_tracker.utils.yaml_loader import load_yaml
 class BallSpawner(Node):
     def __init__(self):
         super().__init__('ball_spawner')
-        # --- Load YAML config ---
+        # Load YAML config
         self.config = load_yaml()
 
         self.cli = self.create_client(SpawnEntity, '/spawn_entity')
@@ -20,7 +20,11 @@ class BallSpawner(Node):
     def spawn_ball(self):
         req = SpawnEntity.Request()
         req.name = "football"
+
+        # sdf model of the ball
         req.xml = open('/ros2_ws/src/sjtu_drone_description/models/MSL_models15/RoboCup15_MSL_Football/model.sdf').read()
+
+        # loading configuration of the ball from the yaml
         ball_config = self.config.get("ball")
         pos = ball_config["position"]
         self.get_logger().info(f"pos:{pos}")

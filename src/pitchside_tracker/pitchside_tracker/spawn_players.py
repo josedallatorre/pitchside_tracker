@@ -9,7 +9,7 @@ from pitchside_tracker.utils.quaternion import quaternion_from_euler
 class PlayerSpawner(Node):
     def __init__(self):
         super().__init__('player_spawner')
-        # --- Load YAML config ---
+        # Load YAML config
         self.config = load_yaml()
 
         self.cli = self.create_client(SpawnEntity, '/spawn_entity')
@@ -23,14 +23,18 @@ class PlayerSpawner(Node):
         if not self.config.get("spawn_players", False):
             self.get_logger().info("Player spawning disabled.")
             return
-
+        
+        # spawning every player in yaml
         for player in self.config.get("players", []):
             name = player["name"]
             pos = player["position"]
 
             req = SpawnEntity.Request()
             req.name = name
+
+            # sdf model of the player
             req.xml = open('/ros2_ws/src/sjtu_drone_description/models/standing_person/model.sdf').read()
+
             req.robot_namespace = ""
             req.initial_pose.position.x = pos[0]
             req.initial_pose.position.y = pos[1]
