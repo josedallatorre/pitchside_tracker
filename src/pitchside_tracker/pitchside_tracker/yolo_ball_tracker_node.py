@@ -13,11 +13,11 @@ import threading
 from collections import deque
 
 
-# ─── Tuning constants ────────────────────────────────────────────────────────
+# Tuning constants
 CONF_THRESHOLD   = 0.18      # low enough to catch weak detections
 BALL_AREA_MIN    = 50        # px²
-BALL_AREA_MAX    = 20000    # px² — raised from 8k; areas were hitting the ceiling
-TRACK_TIMEOUT    = 3.0       # seconds before resetting the spatial prior
+BALL_AREA_MAX    = 20000     # px², raised from 8k; areas were hitting the ceiling
+TRACK_TIMEOUT    = 3.0       # seconds before resetting the spatial prior (last known position)
 SMOOTH_ALPHA     = 0.40      # EMA weight for new detections
 IMGSZ            = 1280      # small objects need high resolution
 FRAME_SKIP       = 2         # process every Nth frame
@@ -30,6 +30,7 @@ class YoloBallTracker(Node):
         self.bridge = CvBridge()
 
         self.model = YOLO("yolov8s.pt")
+        # using GPU for faster inference
         self.device = 0 if torch.cuda.is_available() else "cpu"
         self.get_logger().info(f"Running on device: {self.device}")
 
@@ -45,7 +46,7 @@ class YoloBallTracker(Node):
         self.last_seen_time  = 0.0
         self.frame_count     = 0
 
-        # Smoothed position (EMA) — also serves as spatial prior for association
+        # Smoothed position (EMA), also serves as spatial prior for association (last known position)
         self.smooth_cx: float | None = None
         self.smooth_cy: float | None = None
         self.smooth_area: float | None = None
@@ -62,10 +63,10 @@ class YoloBallTracker(Node):
         cv2.resizeWindow("YOLO Ball Tracking", 640, 360)
         self.get_logger().info("YOLO Ball Tracker started")
 
-    # ── helpers ───────────────────────────────────────────────────────────────
+    # helpers
 
     def _ema(self, prev: float | None, new: float) -> float:
-        """Exponential moving average — smooths out jitter."""
+        """Exponential moving average, smooths out jitter."""
         return new if prev is None else SMOOTH_ALPHA * new + (1 - SMOOTH_ALPHA) * prev
 
     def _area_ok(self, area: float) -> bool:
@@ -92,7 +93,7 @@ class YoloBallTracker(Node):
 
     def _best_ball_box(self, results):
         """
-        Return the best sports-ball detection using pure nearest-prior association.
+        Return the best sports ball detection using pure nearest prior association.
 
         Strategy:
           - If we have a prior position: pick the closest valid detection within
@@ -123,15 +124,14 @@ class YoloBallTracker(Node):
                 near.sort(key=lambda c: self._dist_to_prior(c[0]))
                 return near[0][0]
             else:
-                # Nothing plausible near last position — treat as lost
+                # Nothing plausible near last position, treat as lost
                 return None
 
-        # No prior yet — pick largest valid area
+        # No prior yet, pick largest valid area
         candidates.sort(key=lambda c: c[1], reverse=True)
         return candidates[0][0]
 
-    # ── ROS callbacks ─────────────────────────────────────────────────────────
-
+    # ROS callbacks
     def image_cb(self, msg: Image):
         self.frame_count += 1
         if self.frame_count % FRAME_SKIP != 0:
@@ -139,7 +139,7 @@ class YoloBallTracker(Node):
 
         frame = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
 
-        # Pure detection — no tracker state, no ID management
+        # Pure detection, no tracker state, no ID management
         results = self.model.predict(
             frame,
             device=self.device,
@@ -201,10 +201,10 @@ class YoloBallTracker(Node):
             )
 
         # Reset spatial prior after a long absence so startup logic kicks in
-        # on next detection (picks largest area instead of nearest-to-stale-prior)
+        # on next detection (picks largest area)
         if self.smooth_cx is not None and (now - self.last_seen_time > TRACK_TIMEOUT):
             self.get_logger().warn(
-                f"Ball lost for >{TRACK_TIMEOUT}s — resetting spatial prior"
+                f"Ball lost for >{TRACK_TIMEOUT}s, resetting spatial prior"
             )
             self.smooth_cx = self.smooth_cy = self.smooth_area = None
             self.area_history.clear()
@@ -212,7 +212,7 @@ class YoloBallTracker(Node):
         with self.frame_lock:
             self.last_frame = frame.copy()
 
-    # ── GUI ───────────────────────────────────────────────────────────────────
+    # GUI
 
     def visualize(self):
         with self.frame_lock:
