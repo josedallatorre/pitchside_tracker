@@ -25,7 +25,7 @@ class KickBallServer(Node):
             10
         )
 
-        self.ball_position = (0.0, 0.0, 0.0)  # will be updated from Gazebo
+        self.ball_position = (0.0, 0.0, 0.0)  # temporary value, this will be updated from Gazebo
 
         self.timer = None
         self.steps = 0
