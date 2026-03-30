@@ -25,7 +25,8 @@ def main(args=None):
     rclpy.init(args=args)
     node = rclpy.create_node('spawn_drone')
     cli = node.create_client(SpawnEntity, '/spawn_entity')
-
+    
+    # Load drone config from yaml
     config = load_yaml()
     drone_config = config.get("drone")
     pos = drone_config["position"]
