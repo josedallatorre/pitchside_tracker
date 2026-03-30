@@ -1,6 +1,6 @@
 import math
-# ---------------- Helpers ----------------
 
+# Euclidean Distance
 def distance(a, b):
     return math.sqrt(
         (a[0] - b[0]) ** 2 +
