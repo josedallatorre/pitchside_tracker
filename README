@@ -1,0 +1,15 @@
+# Project Title
+
+This project was made for the course "Drone and Autonomous Robotic System". The idea behind this project is to develope a simulation of a drone that follow autonomously a football depending on range of factors like speed and change of direction.
+
+
+## Installation
+
+The easiest way to start the project is to use Docker.
+After installing Docker start the project with the following command inside the "src" folder:
+
+```bash
+sudo docker build -t josedallatorre/sjtu_drone:latest .
+sudo bash run_docker.sh
+```
+     
